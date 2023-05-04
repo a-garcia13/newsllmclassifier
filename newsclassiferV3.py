@@ -26,7 +26,7 @@ italygpt = italygpt.Completion()
 # initialize api
 italygpt.init()
 
-API_URL = 'http://127.0.0.1:8000/request_documents'
+API_URL = 'https://orc.kapinsights.com/request_documents'
 
 
 def cleanhtml(raw_html):
