@@ -66,4 +66,7 @@ class Completion:
 
     @staticmethod
     def handle_stream_response(response):
-        Completion.message_queue.put(response.decode())
+        try:
+            Completion.message_queue.put(response.decode())
+        except Exception as e:
+            print("stream error:", e)
