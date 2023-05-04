@@ -33,17 +33,18 @@ class Completion:
         options = {}
         if Completion.last_msg_id:
             options['parentMessageId'] = Completion.last_msg_id
-        
-        requests.post(
-            'https://chatbot.theb.ai/api/chat-process',
-            headers=headers,
-            proxies=proxies,
-            content_callback=Completion.handle_stream_response,
-            json={'prompt': prompt, 'options': options},
-            timeout=100000
-        )
-
-        Completion.stream_completed = True
+        try:
+            requests.post(
+                'https://chatbot.theb.ai/api/chat-process',
+                headers=headers,
+                proxies=proxies,
+                content_callback=Completion.handle_stream_response,
+                json={'prompt': prompt, 'options': options},
+                timeout=100000
+            )
+            Completion.stream_completed = True
+        except Exception as e:
+            print(e)
 
     @staticmethod
 
