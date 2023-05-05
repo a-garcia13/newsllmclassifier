@@ -133,7 +133,7 @@ def get_answer(question: str):
         for i in range(5):
             try:
                 answer = function(question)
-                print("answer:", answer, "by function:", function)
+                # print("answer:", answer, "by function:", function)
                 first_two = answer[:2]
                 is_economic = update_es_economica_gpt(first_two)
                 if is_economic != "Unknown":
