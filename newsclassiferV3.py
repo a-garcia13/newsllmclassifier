@@ -179,7 +179,7 @@ def read_all_document(collection):
 
 # Update all
 def update_all(coleccion, document):
-    coleccion.replace_one({"_id": document["_id"]}, document)
+    coleccion.replace_one({"_id": document["_id"]['$oid']}, document)
 
 
 # Define the worker function for concurrent execution
