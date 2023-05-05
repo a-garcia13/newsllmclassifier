@@ -24,7 +24,7 @@ class Completion:
         temperature: float = 1,
         model: str = "gpt-3.5-turbo",
     ):
-        print(parentMessageId, prompt)
+        #print(parentMessageId, prompt)
 
         json_data = {
             "openaiKey": "",
