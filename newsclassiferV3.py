@@ -159,6 +159,7 @@ def update_es_economica_gpt(value):
 def is_economic_article(document, collection):
     article = document['Desc_Noticia']
     article_id = document['_id']['$oid']
+    document['_id'] = article_id
     try:
         prompt = f"Clasifica el siguiente artículo de noticias en si es o no una noticia económica, responder exclusivamente Sí o No. articulo: {article}"
         full_answer, short_answere, service = get_answer(prompt)
@@ -179,7 +180,7 @@ def read_all_document(collection):
 
 # Update all
 def update_all(coleccion, document):
-    coleccion.replace_one({"_id": document["_id"]['$oid']}, document)
+    coleccion.replace_one({"_id": document["_id"]}, document)
 
 
 # Define the worker function for concurrent execution
