@@ -13,7 +13,7 @@ from datetime import datetime
 from json.decoder import JSONDecodeError
 from typing import List, Dict, Any
 import yaml
-from bson import json_util
+from bson import json_util, ObjectId
 
 
 sys.path.append(os.path.join(os.path.dirname(__file__), os.path.pardir))
@@ -156,10 +156,10 @@ def update_es_economica_gpt(value):
 
 
 # Function to ask GPT-3 if the article is an economic article or not
-def is_economic_article(document, collection):
+def is_economic_article(document_reference, collection):
+    document = collection.find_one(ObjectId(document_reference['_id']['$oid']))
     article = document['Desc_Noticia']
-    article_id = document['_id']['$oid']
-    document['_id'] = article_id
+    article_id = document['_id']
     try:
         prompt = f"Clasifica el siguiente artículo de noticias en si es o no una noticia económica, responder exclusivamente Sí o No. articulo: {article}"
         full_answer, short_answere, service = get_answer(prompt)
