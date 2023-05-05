@@ -126,7 +126,7 @@ class NoAnswerFoundError(Exception):
 
 
 def get_answer(question: str):
-    functions = [get_answer_you, get_answer_quora, get_answer_usesless, get_answer_theb]
+    functions = [get_answer_usesless, get_answer_theb]
     random.shuffle(functions)
 
     for function in functions:
